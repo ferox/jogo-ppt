@@ -1,2 +1,2 @@
-# jogo-ppt
-Jogo Pedra, Papel e Tesoura em Vue.js
+# Pedra, Papel ou Tesoura em Vue.js
+Jogo Pedra, Papel ou Tesoura em Vue.js
