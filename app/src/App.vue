@@ -1,13 +1,65 @@
 <template>
-  <div id="app">
-    <div id="nav"/>
-    <RouterView/>
+  <div id="app" :style="backgroundGradient" @mousemove="redefinedPositions" @mouseleave="resetPositions">
+    <Header/>
+		<div class="view">
+			<RouterView/>
+		</div>
   </div>
 </template>
+
+<script>
+	import Header from '@/components/Header/Header.vue'
+	import { bgColorFrom, bgColorTo } from './styles/variables.scss';
+	export default {
+		name: 'App',
+		components: {
+			Header,
+		},
+		data() {
+			return {
+				gradientX: '50%',
+				gradientY: '0%',
+			};
+		},
+		computed: {
+			backgroundGradient() {
+				return {
+					background: `radial-gradient(circle at ${this.gradientX} ${this.gradientY}, ${bgColorFrom}, ${bgColorTo}`,
+				};
+			},
+		},
+		methods: {
+			redefinedPositions({ clientX, clientY }) {
+				this.gradientX = `${clientX}px`;
+				this.gradientY = `${clientY}px`;
+			},
+			resetPositions() {
+				this.gradientX = '50%';
+				this.gradientY = '0%';
+			},
+		},
+	};
+</script>
 
 <style lang="scss">
 	@import './styles/reset';
 	#app {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		min-height: 100vh;
 		font-family: 'Ubuntu', sans-serif;
+		background: radial-gradient(circle at top, $background-from, $background-to);
+
+		.view {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex: 1;
+			width: 100%;
+			max-width: 768px;
+			margin: 0 auto;
+			padding: rfs(30px);
+		}
 	}
 </style>

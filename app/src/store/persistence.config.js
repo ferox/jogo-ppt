@@ -1,4 +1,4 @@
 export default {
-	key: 'rockPaperScissors',
-	paths: [],
+	key: 'jogoPedraPapelTesoura',
+	paths: ['Placar.placar'],
 };
